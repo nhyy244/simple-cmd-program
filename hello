@@ -1,0 +1,70 @@
+#!/usr/bin/python3
+from enum import Enum
+import sys
+from typing import Optional, Tuple 
+    
+def print_default_greeting(message: str):
+    print(f"hello {message}")
+
+def help_flag() -> None:
+    print(
+"""Usage: greeting [OPTION]... [ARG]
+
+Print a greeting.
+
+If ARG is provided, prints "greeting ARG".
+If no ARG is given, prints a default greeting.
+
+Options:
+  -h, --help     display this help and exit""")
+
+def ascii_flag(greeting: str) -> str:
+    return f"{greeting}ASCII"
+
+def capitalize_flag(greeting: str) -> str:
+    print(f"HELLO {greeting}")
+
+def extract_args(sys_args: Optional[list[str]] = []) -> Tuple[list[str]]:
+    greeting:list[str] = []
+    flags:list[str] = []
+    for arg in sys_args:
+        if arg.startswith("-"):
+            flags.append(arg)
+        else:
+            greeting.append(arg)
+    return (greeting,flags)
+
+def validate_args(args: Tuple[list[str]]) -> Tuple[str,list[str]]:
+    greeting = args[0]
+    flags = args[1]
+    print(f"greeting: {greeting}")
+    print(f"flags: {flags}")
+    if len(greeting) == 1:
+        print_default_greeting("from python. \nType -h for more information")
+        sys.exit()
+
+def parse_args(args: Tuple[list[str]]):
+    greeting = args[0]
+    flags = args[1]
+    for g in greeting[1:]:
+        if len(flags) == 0:
+            print_default_greeting(g) 
+        if "-h" in flags or "--help" in flags:
+            help_flag()
+            sys.exit()
+        if "-a" in flags or "-ascii" in flags:
+            g = ascii_flag(g)
+            print_default_greeting(g)
+        if "-c" in flags or "--capitalize" in flags:
+            capitalize_flag(g)
+            sys.exit()
+
+if __name__=="__main__":
+    print(sys.path)
+    (greeting,flags) = extract_args(sys.argv)
+    validate_args((greeting,flags))
+    parse_args((greeting,flags))
+    
+    
+        
+         
