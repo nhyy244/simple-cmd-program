@@ -2,10 +2,7 @@
 from enum import Enum
 import sys
 from typing import Optional, Tuple 
-
-
 print(f"Importing {__name__}")
-    
 def greetings(message: str):
     print(f"greeting {message}")
 
@@ -52,11 +49,12 @@ def parse_args(args: Tuple[str,list[str]]):
         ascii_flag(greeting)
         sys.exit()
 
-if __name__=="__main__":
+def main_thread():
     if len(sys.argv) > 1:
         greetings(sys.argv[1])
     else:
         greetings("from python. -h for help")
+
     
         
          
