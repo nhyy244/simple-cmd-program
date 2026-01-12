@@ -2,9 +2,10 @@
 from enum import Enum
 import sys
 from typing import Optional, Tuple 
-print(f"Importing {__name__}")
+
+
 def greetings(message: str):
-    print(f"greeting {message}")
+    print(f"hello {message}")
 
 def help_flag() -> None:
     print(
@@ -16,44 +17,43 @@ If ARG is provided, prints "greeting ARG".
 If no ARG is given, prints a default greeting.
 
 Options:
-  -h, --help     display this help and exit
+  -h, --help              display this help and exit
+  -a, --ascii string      displays the greeting in a cool way
 """)
 
 def ascii_flag(greeting: str) -> str:
     print(f"ASCII GRETTING: {greeting}")
     
-def extract_args(sys_args: Optional[list[str]] = []) -> Tuple[str,list[str]]:
+def extract_args(sys_args: Optional[list[str]] = []) -> Tuple[list[str]]:
     greeting:list[str] = []
-    args:list[str] = []
+    flags:list[str] = []
     for arg in sys_args:
-        if not arg.startswith("-"):
-            args.append(arg)
+        if arg.startswith("-"):
+            flags.append(arg)
         else:
             greeting.append(arg)
-    if len(greeting) > 1:
-        raise Exception("Only one greeting allowed")
-    else:
-        greeting = greeting[0] if len(greeting) != 0 else ""
-    return (greeting,args)
+    print (greeting)
+    return (greeting,flags)
     
-def parse_args(args: Tuple[str,list[str]]):
+def parse_args(args: Tuple[list[str]]): #TODO refactor
     greeting = args[0]
     flags = args[1]
-    if greeting == "":
-        greetings("from python. -h for help")
-        sys.exit() 
-    if "-h" in flags or "--help" in flags:
+    if len(greeting) > 2:
+        print("Only one greeting allowed")
+        sys.exit()
+    if "-h" in flags or "--help" in flags or len(greeting) == 1 :
         help_flag()
         sys.exit()
-    elif "-a" in flags or "-ascii" in flags:
-        ascii_flag(greeting)
+    if "-a" in flags or "--ascii" in flags:
+        ascii_flag(greeting[1])
         sys.exit()
-
+    if len(greeting) == 2:
+        greetings(greeting[1])
+        sys.exit()
+        
 def main_thread():
-    if len(sys.argv) > 1:
-        greetings(sys.argv[1])
-    else:
-        greetings("from python. -h for help")
+    (greeting,flags) = extract_args(sys.argv)
+    parse_args((greeting,flags))
 
     
         
