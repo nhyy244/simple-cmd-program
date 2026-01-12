@@ -14,7 +14,7 @@ def help_flag() -> None:
 Print a greeting.
 
 If ARG is provided, prints "greeting ARG".
-If no ARG is given, prints a default greeting.
+If no ARG is given, desiplay --help text
 
 Options:
   -h, --help              display this help and exit
