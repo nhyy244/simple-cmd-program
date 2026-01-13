@@ -1,11 +1,13 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 from enum import Enum
 import sys
+from art import *  
 from typing import Optional, Tuple 
 
 
 def greetings(message: str):
     print(f"hello {message}")
+    
 
 def help_flag() -> None:
     print(
@@ -22,7 +24,7 @@ Options:
 """)
 
 def ascii_flag(greeting: str) -> str:
-    print(f"ASCII GRETTING: {greeting}")
+    tprint(f"hello {greeting}", font = "random")
     
 def extract_args(sys_args: Optional[list[str]] = []) -> Tuple[list[str]]:
     greeting:list[str] = []
@@ -56,5 +58,3 @@ def main_thread():
     parse_args((greeting,flags))
 
     
-        
-         
