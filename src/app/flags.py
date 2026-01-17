@@ -3,7 +3,7 @@ import art
 def default_behaviour(message: str):
     print(f"hello {message}")
 
-def ascii_flag(greeting: str) -> str:
+def ascii_flag_fn(greeting: str) -> str:
     art.tprint(f"hello {greeting}", font = "random")
 
 def ascii_flag_description() -> str:
@@ -11,7 +11,7 @@ def ascii_flag_description() -> str:
 -a(--ascii) string 
 Takes a string and transforms it into ascii art
     """
-def help_flag() -> None:
+def help_flag_fn() -> None:
     help_description = """Usage: greeting [OPTION]... [ARG]
 
 Print a greeting.
