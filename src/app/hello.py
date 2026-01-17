@@ -34,14 +34,16 @@ def extract_args(sys_args: Optional[list[str]] = []) -> Tuple[list[str]]:
             flags.append(arg)
         else:
             greeting.append(arg)
-    print (greeting)
+    #print (greeting)
     return (greeting,flags)
     
 def parse_args(args: Tuple[list[str]]): #TODO refactor
+    #A flag is a function that takes a parameter or not. If it takes in a parameter, we call it active(for now), otherwise it is non-active
+    #If both an activate and non-active flag is given, then the first non-active flag takes priority. 
     greeting = args[0]
     flags = args[1]
-    if len(greeting) > 2:
-        print("Only one greeting allowed")
+    if len(greeting) > 2:#TODO allow multiple arguments by default? YES. No reason on why not to allow multiple arguments 
+        print("Only one greeting allowed. Use -m(--multiple) to allow multiple greetings")
         sys.exit()
     if "-h" in flags or "--help" in flags or len(greeting) == 1 :
         help_flag()
