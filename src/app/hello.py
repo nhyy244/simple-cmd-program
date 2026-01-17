@@ -48,10 +48,11 @@ def parse_args(args: Tuple[list[str]]):
             
     for flag in flags:
         for greeting in greetings[1:]:
+            flag_map[flag].is_used = False
             if flag in flag_map:
                 if not flag_map[flag].is_used: #only checking active flags now
                     greeting = flag_map[flag].fn(greeting)
-                    flag_map[flag].is_used = True # TODO: This bugs when multiple arguments are given. Only applies to the first
+                    flag_map[flag].is_used = True
     sys.exit()  
             
 def main_thread():
