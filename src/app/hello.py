@@ -1,60 +1,59 @@
 #!/usr/bin/env python3
-from enum import Enum
 import sys
-from art import *  
-from typing import Optional, Tuple 
+from typing import Optional, Tuple
 
+from src.app.flags import ascii_flag, default_behaviour, help_flag 
+from src.app.flag import Flag
 
-def greetings(message: str):
-    print(f"hello {message}")
-    
+help_flag_class = Flag(help_flag,is_active=False)
+ascii_flag_class = Flag(ascii_flag,is_active=True)
 
-def help_flag() -> None:
-    print(
-"""Usage: greeting [OPTION]... [ARG]
+flag_map = {
+    "-h" : help_flag_class,
+    "--help": help_flag_class,
+    "-a": ascii_flag_class,
+    "--ascii": ascii_flag_class
+}
 
-Print a greeting.
-
-If ARG is provided, prints "greeting ARG".
-If no ARG is given, desiplay --help text
-
-Options:
-  -h, --help              display this help and exit
-  -a, --ascii string      displays the greeting in a cool way
-""")
-
-def ascii_flag(greeting: str) -> str:
-    tprint(f"hello {greeting}", font = "random")
-    
 def extract_args(sys_args: Optional[list[str]] = []) -> Tuple[list[str]]:
-    greeting:list[str] = []
+    greetings:list[str] = []
     flags:list[str] = []
     for arg in sys_args:
         if arg.startswith("-"):
             flags.append(arg)
         else:
-            greeting.append(arg)
-    #print (greeting)
-    return (greeting,flags)
-    
-def parse_args(args: Tuple[list[str]]): #TODO refactor
-    #A flag is a function that takes a parameter or not. If it takes in a parameter, we call it active(for now), otherwise it is non-active
-    #If both an activate and non-active flag is given, then the first non-active flag takes priority. 
-    greeting = args[0]
+            greetings.append(arg)
+    return (greetings,flags)
+
+def parse_args(args: Tuple[list[str]]):
+    greetings = args[0]
     flags = args[1]
-    if len(greeting) > 2:#TODO allow multiple arguments by default? YES. No reason on why not to allow multiple arguments 
-        print("Only one greeting allowed. Use -m(--multiple) to allow multiple greetings")
+    
+    if len(flags) == 0 and len(greetings) == 1: # sys.argv will always be populated with path of program.
+        help_flag_class.fn()
         sys.exit()
-    if "-h" in flags or "--help" in flags or len(greeting) == 1 :
-        help_flag()
+    
+    if len(flags) == 0:
+        for greeting in greetings[1:]:
+            default_behaviour(greeting)
         sys.exit()
-    if "-a" in flags or "--ascii" in flags:
-        ascii_flag(greeting[1])
-        sys.exit()
-    if len(greeting) == 2:
-        greetings(greeting[1])
-        sys.exit()
-        
+    
+    for flag in flags: 
+        if flag not in flag_map:
+                print(f"{flag} unknown. Type -h(--help) to see supported flags")
+                sys.exit()
+        if not flag_map[flag].is_active:
+            flag_map[flag].fn()
+            sys.exit()
+            
+    for flag in flags:
+        for greeting in greetings[1:]:
+            if flag in flag_map:
+                if not flag_map[flag].is_used: #only checking active flags now
+                    greeting = flag_map[flag].fn(greeting)
+                    flag_map[flag].is_used = True # TODO: This bugs when multiple arguments are given. Only applies to the first
+    sys.exit()  
+            
 def main_thread():
     (greeting,flags) = extract_args(sys.argv)
     parse_args((greeting,flags))
