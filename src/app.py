@@ -55,9 +55,11 @@ def parse_args(args: Tuple[list[str]]):
             sys.exit()
 
     for flag in flags:
+        if flag_map[flag].is_used:
+            continue
         for greeting in greetings[1:]: 
-            greeting = flag_map[flag].fn(greeting) #hello -a --ascii narcis prints narcis two times. flags have same behaviour => print only once
-            flag_map[flag].is_used = True 
+            greeting = flag_map[flag].fn(greeting)
+        flag_map[flag].is_used= True
     sys.exit()  
             
 def main_thread():
