@@ -2,8 +2,8 @@
 import sys
 from typing import Optional, Tuple
 
-from app.flag_behaviours import ascii_flag_fn, ascii_flag_description, help_flag_description,default_behaviour, help_flag_fn 
-from src.app.flag import Flag
+from src.flag_behaviours import ascii_flag_fn, ascii_flag_description, help_flag_description,default_behaviour, help_flag_fn 
+from src.flag import Flag
 
 help_flag = Flag(help_flag_fn,"help",takes_argument=False)
 ascii_flag = Flag(ascii_flag_fn,"ascii",takes_argument=True)
@@ -30,33 +30,34 @@ def extract_args(sys_args: Optional[list[str]] = []) -> Tuple[list[str]]:
 def parse_args(args: Tuple[list[str]]):
     greetings = args[0]
     flags = args[1]
+    no_greetings = len(greetings) < 2
     
-    if len(flags) == 0 and len(greetings) < 2: 
+    if len(flags) == 0 and no_greetings:
         help_flag.fn()
         sys.exit()
-    
+        
     if len(flags) == 0:
         for greeting in greetings[1:]: # sys.argv will always be populated with path of program.
             default_behaviour(greeting)
         sys.exit()
     
-    for flag in flags:
+    for flag in flags: #error checking loop
+        if no_greetings:
+            print(flag_map[flag].description)
+            sys.exit()
+        
         if flag not in flag_map:
-                print(f"{flag} unknown. Type -h(--help) to see supported flags")
-                sys.exit()
+            print(f"{flag} unknown. Use -h(--help) to see supported flags")
+            sys.exit()
+    
         if not flag_map[flag].takes_argument: 
             flag_map[flag].fn()
             sys.exit()
 
-        #TODO: when writing flag_name --help (or -h) print flag_description
-        #TODO: 
-        if len(greetings) < 2:
-                print(flag_map[flag].get_description())
-        
-        for greeting in greetings[1:]:
-            if not flag_map[flag].is_used: 
-                greeting = flag_map[flag].fn(greeting)
-                flag_map[flag].is_used = True 
+    for flag in flags:
+        for greeting in greetings[1:]: 
+            greeting = flag_map[flag].fn(greeting) #hello -a --ascii narcis prints narcis two times. flags have same behaviour => print only once
+            flag_map[flag].is_used = True 
     sys.exit()  
             
 def main_thread():

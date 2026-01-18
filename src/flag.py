@@ -8,6 +8,3 @@ class Flag:
         
     def set_description(self,description):
         self.description = description
-        
-    def get_description(self):
-        return self.description
