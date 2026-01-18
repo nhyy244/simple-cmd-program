@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import sys
 from typing import Optional, Tuple
-
 from src.flag_behaviours import ascii_flag_fn, ascii_flag_description, help_flag_description,default_behaviour, help_flag_fn 
 from src.flag import Flag
 
@@ -42,15 +41,15 @@ def parse_args(args: Tuple[list[str]]):
         sys.exit()
     
     for flag in flags: #error checking loop
-        if no_greetings:
-            print(flag_map[flag].description)
-            sys.exit()
-        
         if flag not in flag_map:
             print(f"{flag} unknown. Use -h(--help) to see supported flags")
             sys.exit()
-    
-        if not flag_map[flag].takes_argument: 
+            
+        if no_greetings:
+            print(flag_map[flag].description)
+            sys.exit()
+                
+        if not flag_map[flag].takes_argument: #move the the loop below?
             flag_map[flag].fn()
             sys.exit()
 
