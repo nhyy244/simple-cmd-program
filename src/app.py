@@ -2,13 +2,13 @@
 import sys
 from typing import Optional, Tuple
 
-from src.app.flags import ascii_flag_fn, ascii_flag_description, help_flag_description,default_behaviour, help_flag_fn 
+from app.flag_behaviours import ascii_flag_fn, ascii_flag_description, help_flag_description,default_behaviour, help_flag_fn 
 from src.app.flag import Flag
 
 help_flag = Flag(help_flag_fn,"help",takes_argument=False)
 ascii_flag = Flag(ascii_flag_fn,"ascii",takes_argument=True)
-help_flag.set_help_description(help_flag_description)
-ascii_flag.set_help_description(ascii_flag_description())
+help_flag.set_description(help_flag_description())
+ascii_flag.set_description(ascii_flag_description())
 
 flag_map = {
     "-h" : help_flag,
@@ -51,7 +51,7 @@ def parse_args(args: Tuple[list[str]]):
         #TODO: when writing flag_name --help (or -h) print flag_description
         #TODO: 
         if len(greetings) < 2:
-                print(flag_map[flag].get_help_description())
+                print(flag_map[flag].get_description())
         
         for greeting in greetings[1:]:
             if not flag_map[flag].is_used: 

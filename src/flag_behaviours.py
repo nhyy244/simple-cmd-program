@@ -11,6 +11,7 @@ def ascii_flag_description() -> str:
 -a(--ascii) string 
 Takes a string and transforms it into ascii art
     """
+
 def help_flag_fn() -> None:
     help_description = """Usage: greeting [OPTION]... [ARG]
 
@@ -27,7 +28,8 @@ Options:
     
 
 def help_flag_description() -> str:
-    help_description = """Usage: greeting [OPTION]... [ARG]
+    return """
+Usage: greeting [OPTION]... [ARG]
 
 Print a greeting.
 
@@ -38,6 +40,5 @@ Options:
   -h, --help              display this help and exit
   -a, --ascii string      displays the greeting in a cool way
 """
-    return help_description
 
 

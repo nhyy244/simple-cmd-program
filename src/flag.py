@@ -6,8 +6,8 @@ class Flag:
         self.name = name
         self.description =""
         
-    def set_help_description(self,description):
+    def set_description(self,description):
         self.description = description
         
-    def get_help_description(self):
+    def get_description(self):
         return self.description
