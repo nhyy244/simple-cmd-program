@@ -1,4 +1,4 @@
-1. hello -> help_flag.description
+1. hello -> help_flag.description - implemented
 2. hello --help -> help_flag.description
 3. hello -h -> help_flag.description
 4. hello --help -h -> help_flag.description only 1 time

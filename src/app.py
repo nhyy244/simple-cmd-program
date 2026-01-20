@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 import sys
 from typing import Optional, Tuple
-from src.flag_behaviours import ascii_flag_fn, ascii_flag_description, help_flag_description,default_behaviour, help_flag_fn 
+from src.flag_behaviours import ascii_flag_fn, default_behaviour, help_flag_fn 
+from src.flag_descriptions import help_description, ascii_description
 from src.flag import Flag
 
 help_flag: Flag = Flag(help_flag_fn,"help",takes_argument=False)
 ascii_flag: Flag  = Flag(ascii_flag_fn,"ascii",takes_argument=True)
-help_flag.set_description(help_flag_description())
-ascii_flag.set_description(ascii_flag_description())
+help_flag.set_description(help_description)
+ascii_flag.set_description(ascii_description)
 
 flag_map = {
     "-h" : help_flag,
@@ -49,7 +50,7 @@ def parse_args(args: Tuple[list[str]]):
             print(flag_map[flag].description)
             sys.exit()
                 
-        if not flag_map[flag].takes_argument: #move the the loop below?
+        if not flag_map[flag].takes_argument:
             flag_map[flag].fn()
             sys.exit()
 
