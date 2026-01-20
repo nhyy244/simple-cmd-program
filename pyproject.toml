@@ -5,6 +5,16 @@ description = "Simple command line program"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-"art",
-"pytest"
+    "art",
+    "pytest"
 ]
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]

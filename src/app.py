@@ -4,8 +4,8 @@ from typing import Optional, Tuple
 from src.flag_behaviours import ascii_flag_fn, ascii_flag_description, help_flag_description,default_behaviour, help_flag_fn 
 from src.flag import Flag
 
-help_flag = Flag(help_flag_fn,"help",takes_argument=False)
-ascii_flag = Flag(ascii_flag_fn,"ascii",takes_argument=True)
+help_flag: Flag = Flag(help_flag_fn,"help",takes_argument=False)
+ascii_flag: Flag  = Flag(ascii_flag_fn,"ascii",takes_argument=True)
 help_flag.set_description(help_flag_description())
 ascii_flag.set_description(ascii_flag_description())
 
