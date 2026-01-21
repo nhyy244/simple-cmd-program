@@ -27,8 +27,8 @@ def extract_args(sys_args: Optional[list[str]] = []) -> Tuple[list[str]]:
             greetings.append(arg)
     return (greetings,flags)
 
-def parse_args(args: Tuple[list[str]]):
-    greetings = args[0]
+def parse_args(args: Tuple[list[str]]): #TODO: refactor what argument parse_args takes. always forget which one is greetings or flags
+    greetings = args[0] 
     flags = args[1]
     no_greetings = len(greetings) < 2
     
