@@ -70,5 +70,15 @@ class TestClass:
       out = str(capsys.readouterr().out)
       assert "hello greeting" == out.strip()
       
+    def test_deafult_behaviour_multiple_greetings(self,capsys):
+      greetings = ["file_path","greeting1","greeting2","greeting3"]
+      with pytest.raises(SystemExit):
+        app.parse_args((greetings,[]))
+      out = str(capsys.readouterr().out).strip().split('\n')
+      greetings.pop(0)
+      for i, deafult_behaviour_res in enumerate(out):
+        assert deafult_behaviour_res == f"hello {greetings[i]}"
+    
+      
 
 
