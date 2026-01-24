@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import sys
-from typing import Optional, Tuple
 from src.flag_behaviours import ascii_flag_fn, default_behaviour, help_flag_fn 
 from src.flag_descriptions import help_description, ascii_description
 from src.flag import Flag
@@ -17,7 +16,7 @@ flag_map = {
     "--ascii": ascii_flag
 }
 
-def extract_args(sys_args: Optional[list[str]] = []) -> Tuple[list[str]]:
+def extract_args(sys_args: list[str]= []) -> tuple[list[str], list[str]]:
     greetings:list[str] = []
     flags:list[str] = []
     for arg in sys_args:
@@ -27,7 +26,7 @@ def extract_args(sys_args: Optional[list[str]] = []) -> Tuple[list[str]]:
             greetings.append(arg)
     return (greetings,flags)
 
-def parse_args(args: Tuple[list[str]]): #TODO: refactor what argument parse_args takes. always forget which one is greetings or flags
+def parse_args(args: tuple[list[str], list[str]]): #TODO: refactor what argument parse_args takes. always forget which one is greetings or flags
     greetings = args[0] 
     flags = args[1]
     no_greetings = len(greetings) < 2
