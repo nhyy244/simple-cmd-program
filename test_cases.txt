@@ -1,18 +1,18 @@
-1. hello -> help_flag.description
-2. hello --help -> help_flag.description
-3. hello -h -> help_flag.description
-4. hello --help -h -> help_flag.description only 1 time
-5. hello -a -> ascii_flag.description
-6. hello --ascii -> ascii_flag.description
-7. hello -a -ascii -> ascii_flag.description only 1 time
-8. hello -a -h -> ascii_flag.description
-9. hello -a -h --hellp -> ascii_flag.description only 1 time
-10. hello -a --ascii -h -> ascii_flag.description only 1 time
-11. hello -a -ascii -h --help -> ascii_flag.description only 1 t ime 
-12 hello arg -> default_behaviour(arg)
-13. hello arg1,arg2,... -> default_behaviour(arg1), default_behaviour(arg2),...
-14. hello -a arg1 -> ascii_flag.fn(arg1)
-15. hello -a -ascii arg-> ascii_flag.fn(arg) only 1 time
+1. hello -> help_flag.description - implemented
+2. hello --help -> help_flag.description - implemented
+3. hello -h -> help_flag.description - implemented
+4. hello --help -h -> help_flag.description only 1 time - implemented
+5. hello -a -> ascii_flag.description - implemented
+6. hello --ascii -> ascii_flag.description - implemented
+7. hello -a -ascii -> ascii_flag.description only 1 time - implemented
+8. hello -a -h -> ascii_flag.description - implemented
+9. hello -a -h --hellp -> ascii_flag.description only 1 time - implemented
+10. hello -a --ascii -h -> ascii_flag.description only 1 time - implemented
+11. hello -a -ascii -h --help -> ascii_flag.description only 1 time  - implemented
+12 hello arg -> default_behaviour(arg) - implemented
+13. hello arg1,arg2,... -> default_behaviour(arg1), default_behaviour(arg2),... - implemented
+14. hello -a arg1 -> ascii_flag.fn(arg1) -implemented
+15. hello -a -ascii arg-> ascii_flag.fn(arg) only 1 time - implemented
 16. hello -a -ascii arg1, arg2,... -> ascii_flag(arg1), ascii_flag(arg2),...
 17. hello -qwe -> unknown_flag description
 
