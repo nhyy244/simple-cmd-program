@@ -9,7 +9,7 @@
 9. hello -a -h --hellp -> ascii_flag.description only 1 time - implemented
 10. hello -a --ascii -h -> ascii_flag.description only 1 time - implemented
 11. hello -a -ascii -h --help -> ascii_flag.description only 1 time  - implemented
-12 hello arg -> default_behaviour(arg)
+12 hello arg -> default_behaviour(arg) - implemented
 13. hello arg1,arg2,... -> default_behaviour(arg1), default_behaviour(arg2),...
 14. hello -a arg1 -> ascii_flag.fn(arg1)
 15. hello -a -ascii arg-> ascii_flag.fn(arg) only 1 time

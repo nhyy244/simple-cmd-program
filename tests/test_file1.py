@@ -1,4 +1,5 @@
-import pytest,random
+import pytest
+import random
 from src import app,flag_behaviours
 from src.flag_descriptions import help_description, ascii_description
 class TestClass:  
