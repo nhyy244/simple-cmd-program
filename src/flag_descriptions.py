@@ -1,3 +1,4 @@
+from src.color_maps import arg_to_color_map
 help_description="""Usage: greeting [OPTION]... [ARG]
 
 Print a greeting.
@@ -13,3 +14,13 @@ ascii_description="""
 -a(--ascii) string 
 Takes a string and transforms it into ascii art
     """
+
+available_colors="  \n".join([color for color in arg_to_color_map.keys()])
+color_description=f"""
+-c(--color) [color] string
+Takes a string and colors it. If no colors are specified, a random one will be chosen. 
+Example usage: hello -c red greeting
+
+Colors available:
+{available_colors}
+"""
