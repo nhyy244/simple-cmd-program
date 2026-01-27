@@ -22,18 +22,18 @@ flag_map = {
 def extract_args(sys_args: list[str]= []) -> tuple[list[str], list[str], list[str]]:
     greetings:list[str] = []
     flags:list[str] = []
-    flag_arguments = []
+    color_arguments = []
     for arg in sys_args:
         if arg.startswith("-"):
             flags.append(arg)
-        elif arg in arg_to_color_map.keys() and arg not in flag_arguments:
-            flag_arguments.append(arg)
-            greetings.append(arg) #flag arguments are just strings. they can in princple be greetings
         else:
             greetings.append(arg)
-    return (greetings,flags,flag_arguments)
+    return (greetings,flags,color_arguments)
+#split into positional arguments and flags. 
+#sort the positional arguments into their categories => color_pos_args, hello_pos_args,...
+#
 
-def parse_args(greetings:list[str], flags: list[str], flag_arguments: list[str] | None = None): 
+def parse_args(greetings:list[str], flags: list[str], color_arguments: list[str] = []): 
     no_greetings = len(greetings) < 2
     
     if len(flags) == 0 and no_greetings:
@@ -62,14 +62,15 @@ def parse_args(greetings:list[str], flags: list[str], flag_arguments: list[str] 
         if flag_map[flag].is_used:
             continue
         for greeting in greetings[1:]: 
-            greeting = flag_map[flag].fn(greeting,flag_arguments)
+            greeting = flag_map[flag].fn(greeting,color_arguments)
             print(greeting)
         flag_map[flag].is_used= True
     sys.exit()  
             
 def main_thread():
-    greeting,flags,flag_arguments = extract_args(sys.argv)
-    print(f"FLAG_ARGUMENTS: {flag_arguments}")
-    parse_args(greeting,flags,flag_arguments)
+    greeting,flags,color_arguments = extract_args(sys.argv)
+    print(f"COLOR_ARGUMENTS: {color_arguments}")
+    print(f"GREETINGS: {greeting[1:]}")
+    parse_args(greeting,flags,color_arguments)
 
     

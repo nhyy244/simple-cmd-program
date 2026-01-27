@@ -16,11 +16,11 @@ Takes a string and transforms it into ascii art
     """
 
 available_colors="  \n".join([color for color in arg_to_color_map.keys()])
-color_description=f"""
+color_description=f""" 
 -c(--color) [color] string
 Takes a string and colors it. If no colors are specified, a random one will be chosen. 
 Example usage: hello -c red greeting
 
 Colors available:
 {available_colors}
-"""
+""" #TODO enforce that only one color can be chosen. if multiple colors are specified, only the first one is chosen

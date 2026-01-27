@@ -28,7 +28,7 @@ class Colors(Enum):
     CROSSED = "\033[9m"
     DEFAULT = "\033[0m"
 
-arg_to_color_map = { 
+arg_to_color_map = {
     name.lower(): color 
     for name,color in Colors.__members__.items()
 }
