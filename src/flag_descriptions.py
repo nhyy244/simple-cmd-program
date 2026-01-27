@@ -1,4 +1,4 @@
-from src.color_maps import arg_to_color_map
+from src.pos_args_maps import arg_to_color_map
 help_description="""Usage: greeting [OPTION]... [ARG]
 
 Print a greeting.
@@ -23,4 +23,4 @@ Example usage: hello -c red greeting
 
 Colors available:
 {available_colors}
-""" #TODO enforce that only one color can be chosen. if multiple colors are specified, only the first one is chosen
+"""

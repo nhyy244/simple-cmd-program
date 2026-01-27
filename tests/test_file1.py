@@ -97,7 +97,7 @@ def test_ascii_flag():
   flag_map['-a'].fn = mock_fn #-a and --ascii is the same object
   with pytest.raises(SystemExit):
     app.parse_args(greetings,["-a",])
-  mock_fn.assert_called_once_with(greetings[1],[])
+  mock_fn.assert_called_once_with(greetings[1])
 
 def test_ascii_flag2():
   greetings = ["file_path","greeting1"]
@@ -105,7 +105,7 @@ def test_ascii_flag2():
   flag_map['-a'].fn = mock_fn 
   with pytest.raises(SystemExit):
     app.parse_args(greetings,["-a","--ascii"])
-  mock_fn.assert_called_once_with(greetings[1],[])
+  mock_fn.assert_called_once_with(greetings[1])
 
 def test_ascii_flag_multiple_greetings():
   greetings = ["file_path","greeting1","greeting2","greeting3"]
@@ -115,7 +115,7 @@ def test_ascii_flag_multiple_greetings():
     app.parse_args(greetings,["-a","--ascii"])
   mock_fn.call_count = len(greetings[1:])
   mock_fn.assert_has_calls(
-     [call("greeting1",[]),call("greeting2",[]),call("greeting3",[])],
+     [call("greeting1"),call("greeting2"),call("greeting3")],
      any_order=False)
 
 def test_unknown_argument(capsys):
