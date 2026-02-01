@@ -1,4 +1,5 @@
-help_description="""Usage: greeting [OPTION]... [ARG]
+from src.pos_args_maps import arg_to_color_map
+help_flag_description="""Usage: greeting [OPTION]... [ARG]
 
 Print a greeting.
 
@@ -9,7 +10,17 @@ Options:
   -h, --help              display this help and exit
   -a, --ascii string      displays the greeting in a cool way
 """
-ascii_description=""" 
+ascii_flag_description=""" 
 -a(--ascii) string 
 Takes a string and transforms it into ascii art
     """
+
+available_colors="  \n".join([color for color in arg_to_color_map.keys()])
+color_flag_description=f""" 
+-c(--color) [color] string
+Takes a string and colors it. If no colors are specified, a random one will be chosen. 
+Example usage: hello -c red greeting
+
+Colors available:
+{available_colors}
+"""
