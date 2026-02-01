@@ -3,7 +3,7 @@ from src.flag_descriptions import help_flag_description
 from src.flag_behaviours import default_behaviour
 import sys
 class Flag: 
-    def __init__(self, name:list[str], fn: Callable[[str,str], str | None], description:str, arguments:list[str] = []): 
+    def __init__(self, name:list[str], fn: Callable[..., str | None], description:str, arguments:list[str] = []): 
         self.name = name
         self.fn = fn
         self.description = description
@@ -30,7 +30,7 @@ class ArgumentParser:
         self.arguments: list[str] = []
         self.help_description = help_flag_description
         
-    def add_flag(self, name : list[str], fn: Callable[[str,str], str | None], description : str, arguments : list[str] = []):
+    def add_flag(self, name : list[str], fn: Callable[..., str | None], description : str, arguments : list[str] = []):
         self.flags.append(Flag(name=name,
                                 fn=fn,
                                 description=description,

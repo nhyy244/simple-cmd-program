@@ -11,9 +11,12 @@ def default_behaviour(message: str):
 def help_flag_fn() -> None:
     print(help_flag_description)
 
-def ascii_flag_fn(argument: str, flag_argument:str = ""): 
+def ascii_flag_fn(argument: str, flag_argument:str = "") -> str: 
     #print(f"argument in ascii_flag: {argument}")
-    return art.text2art(f"hello {argument}", font = "random")
+    result = art.text2art(f"hello {argument}", font = "random")
+    if isinstance(result,tuple):
+        return result[0]
+    return result
 
 def color_flag_fn(argument: str, flag_argument:str = ""):
     #print(f"argument in color_flag: {argument}")
