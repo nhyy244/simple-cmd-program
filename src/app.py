@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 import sys
 from src.ArgumentParser import ArgumentParser
-from src.ArgumentParser import Flag
-from src.flag_behaviours import ascii_flag_fn, default_behaviour, help_flag_fn, color_flag_fn
+from src.flag_behaviours import ascii_flag_fn, help_flag_fn, color_flag_fn
 from src.flag_descriptions import help_flag_description, ascii_flag_description, color_flag_description
 from src.pos_args_maps import arg_to_color_map
 
