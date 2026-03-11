@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
-from src import app
+from cmd_program import app
+
 if __name__ == "__main__":
-    app.main_thread() 
+    app.main_thread()

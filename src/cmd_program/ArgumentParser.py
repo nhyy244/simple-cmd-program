@@ -1,6 +1,6 @@
 from typing import Callable
-from src.flag_descriptions import help_flag_description
-from src.flag_behaviours import default_behaviour
+from cmd_program.flag_descriptions import help_flag_description
+from cmd_program.flag_behaviours import default_behaviour
 import sys
 
 

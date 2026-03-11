@@ -1,4 +1,4 @@
-from src.pos_args_maps import arg_to_color_map
+from cmd_program.pos_args_maps import arg_to_color_map
 
 help_flag_description = """\
 Usage:
