@@ -1,7 +1,7 @@
 import pytest
 
-from src.ArgumentParser import ArgumentParser
-from src.flag_descriptions import (
+from hello_nhyy24.ArgumentParser import ArgumentParser
+from hello_nhyy24.flag_descriptions import (
     help_flag_description,
     ascii_flag_description,
     color_flag_description,

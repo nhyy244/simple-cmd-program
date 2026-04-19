@@ -1,20 +1,30 @@
 [project]
-name = "cmd-program"
+name = "hello-nhyy24"
 version = "0.1.0"
 description = "Simple command line program"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "art",
-    "pytest"
 ]
+
+[project.scripts]
+hello = "hello_nhyy24.app:main_thread"
+
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools >= 77.0.3"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-package-dir = {"" = "."}
-
 [tool.setuptools.packages.find]
-where = ["."]
-include = ["src*"]
+where = ["src"]
+
+[tool.pyright]
+extraPaths = ["src"]
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[project.urls]
+Homepage = "https://github.com/nhyy244/simple-cmd-program"

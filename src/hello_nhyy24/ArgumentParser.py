@@ -1,6 +1,6 @@
 from typing import Callable
-from src.flag_descriptions import help_flag_description
-from src.flag_behaviours import default_behaviour
+from .flag_descriptions import help_flag_description
+from .flag_behaviours import default_behaviour
 import sys
 
 
@@ -113,6 +113,6 @@ class ArgumentParser:
 
     def _rearrange_color_flag(self, flags: list[Flag]) -> list[Flag]:
         flags.sort(
-            key=lambda f: ("-c" in f.name or "--color" in f.name)  # False < True
+            key=lambda f: "-c" in f.name or "--color" in f.name  # False < True
         )
         return flags
