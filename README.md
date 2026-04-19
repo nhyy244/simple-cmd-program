@@ -1,4 +1,4 @@
-# simple-cmd-program
+# Greeting CLI program
 
 Simple greeting CLI program made to learn more about CLI's. 
 
