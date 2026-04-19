@@ -24,8 +24,8 @@ hello [OPTIONS] [NAME...]
 **Examples**
 
 ```bash
-python hello world
-python hello -a world
-python hello -c red world
-python hello -a -c red world
+hello world
+hello -a world
+hello -c red world
+hello -a -c red world
 ```
