@@ -3,16 +3,16 @@
 Simple greeting CLI program made to learn more about CLI's. 
 
 ## Setup
-
+Install with pip/pipx:
 ```bash
-uv sync
-source .venv/bin/activate
+pip install hello24
+pipx install hello24
 ```
 
 ## Usage
 
 ```bash
-python hello [OPTIONS] [NAME...]
+hello [OPTIONS] [NAME...]
 ```
 
 | Option | Description |

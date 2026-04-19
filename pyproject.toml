@@ -1,6 +1,6 @@
 [project]
 name = "hello24"
-version = "0.1.0"
+version = "0.1.1"
 description = "Simple command line program"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -9,7 +9,7 @@ dependencies = [
 ]
 
 [project.scripts]
-hello = "hello_nhyy24.app:main_thread"
+hello = "hello24.app:main_thread"
 
 [build-system]
 requires = ["setuptools >= 77.0.3"]
